@@ -2,4 +2,4 @@ outs:
 - md5: 46e74d2208821ba885012d28c058d2cb
   size: 931582
   hash: md5
-  path: salaries (2).csv
+  path: salaries.csv
