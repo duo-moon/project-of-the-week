@@ -1,0 +1,12 @@
+process:
+  data_path: 'data/salaries.csv'
+  output_path: 'data/features'
+  seed: 42
+  test_split_size: 0.20
+train:
+  feature_path: 'data/features'
+  model_path: 'models'
+  n_estimators: 100
+  seed: 42
+eval:
+  ...
