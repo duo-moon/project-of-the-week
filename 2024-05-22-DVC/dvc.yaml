@@ -9,3 +9,13 @@ stages:
     - process.test_split_size
     outs:
     - data/features
+  train:
+    cmd: python src/train.py -c params.yaml
+    deps:
+    - data/features
+    - src/train.py
+    params:
+    - train.n_estimators
+    - train.seed
+    outs:
+    - output
