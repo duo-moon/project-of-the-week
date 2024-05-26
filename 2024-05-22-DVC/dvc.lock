@@ -1,0 +1,72 @@
+schema: '2.0'
+stages:
+  process:
+    cmd: python src/process.py -c params.yaml
+    deps:
+    - path: data/salaries.csv
+      hash: md5
+      md5: a8df254add131e8074a36daf1be4a37b
+      size: 931521
+    - path: src/process.py
+      hash: md5
+      md5: 6718c3aaa7d57e388b9c70f2ed9c5a3c
+      size: 1593
+    params:
+      params.yaml:
+        process.seed: 42
+        process.test_split_size: 0.2
+    outs:
+    - path: outputs/features
+      hash: md5
+      md5: ff02cd9ad7a5db8949a13de2c3ff265c.dir
+      size: 999167
+      nfiles: 3
+  train:
+    cmd: python src/train.py -c params.yaml
+    deps:
+    - path: outputs/features
+      hash: md5
+      md5: ff02cd9ad7a5db8949a13de2c3ff265c.dir
+      size: 999167
+      nfiles: 3
+    - path: src/train.py
+      hash: md5
+      md5: 67974aeeebb0d22858e9ed27c0f29102
+      size: 1062
+    params:
+      params.yaml:
+        train.n_estimators: 100
+        train.seed: 42
+    outs:
+    - path: outputs/model
+      hash: md5
+      md5: 93406abcd717a9ee294720f237a1847e.dir
+      size: 6141334
+      nfiles: 1
+  eval:
+    cmd: python src/eval.py -c params.yaml
+    deps:
+    - path: outputs/features
+      hash: md5
+      md5: ff02cd9ad7a5db8949a13de2c3ff265c.dir
+      size: 999167
+      nfiles: 3
+    - path: outputs/model/model.pkl
+      hash: md5
+      md5: e83315166b22fd302f1af8eb93917e08
+      size: 6141334
+    - path: src/eval.py
+      hash: md5
+      md5: 61b84b882db3ffebe331e3f4b8fc0111
+      size: 1745
+    params:
+      params.yaml:
+        eval.eval_output_path: outputs/eval
+        eval.features_path: outputs/features
+        eval.model_path: outputs/model/model.pkl
+    outs:
+    - path: outputs/eval
+      hash: md5
+      md5: 189599bf61b310c57e17527faef2aff6.dir
+      size: 41375
+      nfiles: 3

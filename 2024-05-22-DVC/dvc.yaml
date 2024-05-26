@@ -31,3 +31,9 @@ stages:
     - eval.model_path
     outs:
     - outputs/eval
+metrics:
+- outputs/eval/metrics.json
+plots:
+- outputs/eval/plots/metrics:
+    x: step
+- outputs/eval/plots/images
