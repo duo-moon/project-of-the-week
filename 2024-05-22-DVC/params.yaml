@@ -1,12 +1,14 @@
 process:
   data_path: 'data/salaries.csv'
-  output_path: 'data/features'
+  output_path: 'outputs/features'
   seed: 42
   test_split_size: 0.20
 train:
-  feature_path: 'data/features'
-  model_path: 'output'
+  features_path: 'outputs/features'
+  model_path: 'outputs/model'
   n_estimators: 100
   seed: 42
 eval:
-  ...
+  model_path: 'outputs/model/model.pkl'
+  features_path: 'outputs/features'
+  eval_output_path: 'outputs/eval'
