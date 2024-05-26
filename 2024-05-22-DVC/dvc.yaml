@@ -1,0 +1,11 @@
+stages:
+  process:
+    cmd: python src/process.py -c params.yaml
+    deps:
+    - data/salaries.csv
+    - src/process.py
+    params:
+    - process.seed
+    - process.test_split_size
+    outs:
+    - data/features
