@@ -30,6 +30,7 @@ def preprocess_and_save_data(data_path: pathlib.Path, output_path: pathlib.Path,
     X_val = dv.transform(X_val.to_dict(orient='records'))
 
     output_path.mkdir(exist_ok=True)
+    dump_pickle(dv, output_path.joinpath('vectorizer.pkl'))
     dump_pickle((X_train, y_train.values), output_path.joinpath('train.pkl'))
     dump_pickle((X_val, y_val.values), output_path.joinpath('val.pkl'))
 
