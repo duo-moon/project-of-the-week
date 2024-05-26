@@ -2,3 +2,4 @@ dvc>=3.50.2
 pandas>=2.2.2
 scikit-learn>=1.4.2
 dvclive>=3.46.0
+matplotlib>=3.9.0
