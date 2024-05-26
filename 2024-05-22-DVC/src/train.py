@@ -30,7 +30,7 @@ if __name__ == '__main__':
 
     config = load_yaml(args.config)['train']
     run_train(
-        feature_path=pathlib.Path(config['feature_path']),
+        feature_path=pathlib.Path(config['features_path']),
         model_path=pathlib.Path(config['model_path']),
         n_estimators=config['n_estimators'],
         seed=config['seed'],
