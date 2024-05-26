@@ -8,14 +8,26 @@ stages:
     - process.seed
     - process.test_split_size
     outs:
-    - data/features
+    - outputs/features
   train:
     cmd: python src/train.py -c params.yaml
     deps:
-    - data/features
+    - outputs/features
     - src/train.py
     params:
     - train.n_estimators
     - train.seed
     outs:
-    - output
+    - outputs/model
+  eval:
+    cmd: python src/eval.py -c params.yaml
+    deps:
+    - outputs/features
+    - outputs/model/model.pkl
+    - src/eval.py
+    params:
+    - eval.eval_output_path
+    - eval.features_path
+    - eval.model_path
+    outs:
+    - outputs/eval
