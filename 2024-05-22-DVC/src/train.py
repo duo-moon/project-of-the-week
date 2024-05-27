@@ -6,14 +6,17 @@ from sklearn.ensemble import RandomForestRegressor
 from helpers import load_yaml, dump_pickle, load_pickle
 
 
-def run_train(feature_path: pathlib.Path, model_path: pathlib.Path, n_estimators: int, seed: int) -> None:
+def run_train(feature_path: pathlib.Path, params_path: pathlib.Path, output_path: pathlib.Path) -> None:
     X_train, y_train = load_pickle(feature_path.joinpath('train.pkl'))
+    best_params = load_pickle(params_path.joinpath('best_params.pkl'))
 
-    rf = RandomForestRegressor(n_estimators=n_estimators, random_state=seed)
+    best_params = {key: int(value) for key, value in best_params.items()}
+
+    rf = RandomForestRegressor(**best_params)
     rf.fit(X_train, y_train)
 
-    model_path.mkdir(exist_ok=True)
-    dump_pickle(rf, model_path.joinpath('model.pkl'))
+    output_path.mkdir(exist_ok=True)
+    dump_pickle(rf, output_path.joinpath('model.pkl'))
 
 
 if __name__ == '__main__':
@@ -24,7 +27,6 @@ if __name__ == '__main__':
     config = load_yaml(args.config)['train']
     run_train(
         feature_path=pathlib.Path(config['features_path']),
-        model_path=pathlib.Path(config['model_path']),
-        n_estimators=config['n_estimators'],
-        seed=config['seed'],
+        params_path=pathlib.Path(config['params_path']),
+        output_path=pathlib.Path(config['output_path']),
     )

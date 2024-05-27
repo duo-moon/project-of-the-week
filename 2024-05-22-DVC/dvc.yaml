@@ -9,14 +9,22 @@ stages:
     - process.test_split_size
     outs:
     - outputs/features
+  optimize:
+    cmd: python src/optimize.py -c params.yaml
+    deps:
+    - outputs/features
+    - src/optimize.py
+    params:
+    - optimize.n_trials
+    - optimize.seed
+    outs:
+    - outputs/best_params
   train:
     cmd: python src/train.py -c params.yaml
     deps:
     - outputs/features
+    - outputs/best_params
     - src/train.py
-    params:
-    - train.n_estimators
-    - train.seed
     outs:
     - outputs/model
   eval:
@@ -25,10 +33,6 @@ stages:
     - outputs/features
     - outputs/model/model.pkl
     - src/eval.py
-    params:
-    - eval.eval_output_path
-    - eval.features_path
-    - eval.model_path
     outs:
     - outputs/eval
 metrics:

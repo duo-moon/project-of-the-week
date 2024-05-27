@@ -3,11 +3,15 @@ process:
   output_path: 'outputs/features'
   seed: 42
   test_split_size: 0.20
+optimize:
+  features_path: 'outputs/features'
+  output_path: 'outputs/best_params'
+  n_trials: 20
+  seed: 42
 train:
   features_path: 'outputs/features'
-  model_path: 'outputs/model'
-  n_estimators: 100
-  seed: 42
+  params_path: 'outputs/best_params'
+  output_path: 'outputs/model'
 eval:
   model_path: 'outputs/model/model.pkl'
   features_path: 'outputs/features'
