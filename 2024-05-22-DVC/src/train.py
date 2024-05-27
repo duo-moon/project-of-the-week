@@ -1,16 +1,9 @@
 import argparse
 import pathlib
-import pickle
-from typing import Any
 
 from sklearn.ensemble import RandomForestRegressor
 
-from process import load_yaml, dump_pickle
-
-
-def load_pickle(path: pathlib.Path) -> Any:
-    with open(path, 'rb') as f:
-        return pickle.load(f)
+from helpers import load_yaml, dump_pickle, load_pickle
 
 
 def run_train(feature_path: pathlib.Path, model_path: pathlib.Path, n_estimators: int, seed: int) -> None:

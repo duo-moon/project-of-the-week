@@ -1,21 +1,11 @@
 import argparse
 import pathlib
-import pickle
 
 import pandas as pd
-import yaml
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.model_selection import train_test_split
 
-
-def load_yaml(path: pathlib.Path):
-    with open(path, 'r') as f:
-        return yaml.safe_load(f)
-
-
-def dump_pickle(obj, path: pathlib.Path) -> None:
-    with open(path, 'wb') as f:
-        pickle.dump(obj, f)
+from helpers import load_yaml, dump_pickle
 
 
 def preprocess_and_save_data(data_path: pathlib.Path, output_path: pathlib.Path, seed: int, split_size: float) -> None:

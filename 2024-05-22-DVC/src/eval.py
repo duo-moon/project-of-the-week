@@ -7,8 +7,7 @@ from dvclive import Live
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import root_mean_squared_error
 
-from process import load_yaml
-from train import load_pickle
+from helpers import load_yaml, load_pickle
 
 
 def save_importance_plot(live: Live, model: RandomForestRegressor, feature_names: list[str]):
