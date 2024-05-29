@@ -26,7 +26,7 @@ stages:
     deps:
     - path: outputs/best_params
       hash: md5
-      md5: b335367366a7df216892eaa8e3797fa7.dir
+      md5: c8d6189617a50fad1fddd8d2510a4055.dir
       size: 243
       nfiles: 1
     - path: outputs/features
@@ -41,8 +41,8 @@ stages:
     outs:
     - path: outputs/model
       hash: md5
-      md5: 3238b5b68c7272810a17bb0e21dcaff8.dir
-      size: 455747
+      md5: 2ab878048068a8324c852bd9706d6211.dir
+      size: 31625375
       nfiles: 1
   eval:
     cmd: python src/eval.py -c params.yaml
@@ -54,8 +54,8 @@ stages:
       nfiles: 3
     - path: outputs/model/model.pkl
       hash: md5
-      md5: 76e0c1b6a90adc175901a6bb415773b7
-      size: 455747
+      md5: 47d4e6ae65706731c402dfc1afd0f745
+      size: 31625375
     - path: src/eval.py
       hash: md5
       md5: a6432d8abb48f9635932350b92aa6a4a
@@ -63,8 +63,8 @@ stages:
     outs:
     - path: outputs/eval
       hash: md5
-      md5: 1000e574961b9f44b3da353d29b986f0.dir
-      size: 42781
+      md5: 3b965054f3c7b6b1fd31ccd08acba01c.dir
+      size: 43493
       nfiles: 3
   optimize:
     cmd: python src/optimize.py -c params.yaml
@@ -76,8 +76,8 @@ stages:
       nfiles: 3
     - path: src/optimize.py
       hash: md5
-      md5: 1eef9cb5ec9c2f6e6e789194bc5cdc04
-      size: 1924
+      md5: 5058e24755e51530422ce41ba6783648
+      size: 1911
     params:
       params.yaml:
         optimize.n_trials: 20
@@ -85,6 +85,6 @@ stages:
     outs:
     - path: outputs/best_params
       hash: md5
-      md5: b335367366a7df216892eaa8e3797fa7.dir
+      md5: c8d6189617a50fad1fddd8d2510a4055.dir
       size: 243
       nfiles: 1
