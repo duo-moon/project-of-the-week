@@ -24,10 +24,10 @@ def run_optimization(features_path: pathlib.Path, output_path: pathlib.Path, n_t
         return {'loss': rmse, 'status': STATUS_OK}
 
     search_space = {
-        'max_depth': scope.int(hp.quniform('max_depth', 1, 20, 1)),
-        'min_samples_leaf': scope.int(hp.quniform('min_samples_leaf', 1, 4, 1)),
-        'min_samples_split': scope.int(hp.quniform('min_samples_split', 2, 10, 1)),
-        'n_estimators': scope.int(hp.quniform('n_estimators', 10, 50, 1)),
+        'max_depth': scope.int(hp.uniform('max_depth', 1, 20)),
+        'min_samples_leaf': scope.int(hp.uniform('min_samples_leaf', 1, 5)),
+        'min_samples_split': scope.int(hp.uniform('min_samples_split', 2, 10)),
+        'n_estimators': scope.int(hp.uniform('n_estimators', 100, 5000)),
         'random_state': seed,
     }
 
